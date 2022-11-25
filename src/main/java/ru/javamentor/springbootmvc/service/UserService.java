@@ -11,7 +11,7 @@ import java.util.Set;
 public interface UserService extends UserDetailsService {
     boolean addRole(Role role);
     Role findByNameRole(String name);
-    LinkedHashSet<Role> listRoles();
+    Set<Role> listRoles();
     Role findByIdRole(int id);
     Set<Role> listByRole(List<String> name);
     boolean add(User user);

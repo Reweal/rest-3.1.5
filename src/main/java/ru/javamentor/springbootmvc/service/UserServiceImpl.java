@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public LinkedHashSet<Role> listRoles() {
-        return new LinkedHashSet<>(roleDao.listRoles());
+    public Set<Role> listRoles() {
+        return new HashSet<>(roleDao.listRoles());
     }
 
     @Override

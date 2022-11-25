@@ -9,6 +9,9 @@ import ru.javamentor.springbootmvc.model.Role;
 import ru.javamentor.springbootmvc.model.User;
 import ru.javamentor.springbootmvc.service.UserServiceImpl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,11 +34,9 @@ public class RestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
-//    public User(String firstname, String lastname, String age, String email, String username, String password, Set<Role> roles) {
     @GetMapping("/users/{id}")
     public ResponseEntity<User> showUser(@PathVariable int id) {
-        User user = userService.findById(id);
+        User user = userService.findByUsername(userService.findById(id).getUsername());
         return user != null
                 ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -43,8 +44,6 @@ public class RestController {
 
     @PostMapping("/users")
     public ResponseEntity<User> addNewUser(@RequestBody User user) {
-        User newUser = new User("firstname", "firstname", "firstname", "22", "firstname@firstname", "firstname", Set.of(new Role("ROLE_ADMIN")));
-        userService.add(newUser);
         userService.add(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
@@ -52,7 +51,7 @@ public class RestController {
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         userService.update(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/users/{id}")
@@ -67,7 +66,7 @@ public class RestController {
     }
 
     @GetMapping("/roles")
-    public ResponseEntity<LinkedHashSet<Role>> getAllRoles() {
+    public ResponseEntity<Set<Role>> getAllRoles() {
         return new ResponseEntity<>(userService.listRoles(), HttpStatus.OK);
     }
 
