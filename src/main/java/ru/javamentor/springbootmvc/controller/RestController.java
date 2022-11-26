@@ -29,17 +29,19 @@ public class RestController {
     @GetMapping("/users")
     public ResponseEntity<Set<User>> showAllUsers() {
         Set<User> users = userService.getListUsers();
-        return users != null && !users.isEmpty()
-                ? new ResponseEntity<>(users, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (users == null && users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")
     public ResponseEntity<UserDetails> showUser(@PathVariable int id) {
         UserDetails user = userService.loadUserByUsername(userService.getById(id).getUsername());
-        return user != null
-                ? new ResponseEntity<>(user, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/users")

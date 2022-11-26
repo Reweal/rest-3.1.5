@@ -94,10 +94,5 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-
-    private Collection<? extends GrantedAuthority> ath(Collection<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))
-                .collect(Collectors.toList());
-    }
 }
 
