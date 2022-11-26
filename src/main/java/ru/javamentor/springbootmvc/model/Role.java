@@ -16,6 +16,14 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
@@ -32,19 +40,6 @@ public class Role implements GrantedAuthority {
         this.role = role;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public String getNoPrefix() {
-        String prefix = "ROLE_";
-        return role.substring(prefix.length());
-    }
-
     public Long getId() {
         return id;
     }
@@ -54,7 +49,8 @@ public class Role implements GrantedAuthority {
     }
 
     public String getRole() {
-        return role; }
+        return role;
+    }
 
     public void setRole(String role) {
         this.role = role;
@@ -67,6 +63,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return getRole().replaceAll("ROLE_", "");
+        return role;
     }
 }

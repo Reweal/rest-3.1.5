@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import ru.javamentor.springbootmvc.model.Role;
 import ru.javamentor.springbootmvc.model.User;
 import ru.javamentor.springbootmvc.service.RoleServiceImpl;
 import ru.javamentor.springbootmvc.service.UserServiceImpl;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,8 +35,8 @@ public class RestController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> showUser(@PathVariable int id) {
-        User user = userService.getById(id);
+    public ResponseEntity<UserDetails> showUser(@PathVariable int id) {
+        UserDetails user = userService.loadUserByUsername(userService.getById(id).getUsername());
         return user != null
                 ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);

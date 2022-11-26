@@ -22,9 +22,9 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public User getByName(String email) {
-        return entityManager.createQuery("select u from User u join fetch u.roles where u.email = :email", User.class)
-                .setParameter("email", email)
+    public User getByName(String username) {
+        return entityManager.createQuery("select u from User u join fetch u.roles where u.username = :username", User.class)
+                .setParameter("username", username)
                 .getResultList().stream().findAny().orElse(null);
     }
 
