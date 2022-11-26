@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public interface RoleDao {
-    void add(Role user);
-    Role findByIdRole(int id);
-    List<Role> listRoles();
-    Role findByName(String name);
-    List<Role> listByName(List<String> name);
+    Role getByIdRole(int id);
+    List<Role> getListRoles();
+    Role getByName(String name);
+    List<Role> getListByName(List<String> name);
+    boolean add(Role user);
+
+    List<Role> getRolesListById(List<Long> roles);
 }

@@ -9,15 +9,12 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserService extends UserDetailsService {
-    boolean addRole(Role role);
-    Role findByNameRole(String name);
-    Set<Role> listRoles();
-    Role findByIdRole(int id);
-    Set<Role> listByRole(List<String> name);
-    boolean add(User user);
-    Set<User> listUsers();
+    List<Role> getListRoles();
+    List<Role> getListByRole(List<String> name);
+    void add(User user);
+    Set<User> getListUsers();
     void delete(int id);
     void update(User user);
-    User findById(int id);
-    User findByUsername(String userName);
+    User getById(int id);
+    User getByUsername(String userName);
 }

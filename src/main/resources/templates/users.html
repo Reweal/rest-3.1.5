@@ -13,149 +13,156 @@
     <title>Admin panel</title>
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-2" href="/admin" id="user">
-        <span class="font-weight-bold" id="headerUsername"></span>
-        <span class="font-weight-normal"> with roles: </span>
-        <span class="font-weight-normal" id="headerRoles"></span>
-    </a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-right">
-            <a class="nav-link" href="/logout">Logout</a>
-        </li>
-    </ul>
-</nav>
-</br>
-</br>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-2 p-0">
-            <div class="bg-white vh-100">
-                <nav class="nav nav-pills nav-fill nav flex-column mt-3">
-                    <a class="nav-link active" data-toggle="tab" href="#adminPanel">Admin</a>
-                    <a class="nav-link " data-toggle="tab" href="#userPanel">User</a>
+
+<header>
+    <div class="container-fluid" style="padding: 0">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+                    <div class="collapse navbar-collapse" id="user">
+                        <ul class="navbar-nav mr-auto">
+                            <a class="navbar-brand font-weight-bold" id="headerUsername"></a>
+                            <a class="navbar-brand">with roles: </a>
+                            <a class="navbar-brand" id="headerRoles"></a>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-right" href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </div>
+    </div>
+</header>
 
-        <div class="col-sm-10 height: 1200 px" style="height: 1000px; background: #F7F7F7">
-            <div class="tab-content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2" style="padding: 0; padding-top: 15px">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#adminPanel">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#userPanel">User</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-10 bg-light">
+            <div class="tab-content" style="padding-top: 15px; height: 100vh">
 
                 <div class="tab-pane fade show active" id="adminPanel">
-                    <div class="row">
-                        <div class="col-sm-12 p-3">
-                            <!-- Admin panel -->
-                            <h1>Admin panel</h1>
-                            <div class="col">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active fade-in" data-toggle="tab" id="allUsersTable" href="#allUsers">Users table</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link fade-in" data-toggle="tab" href="#newUser">New User</a>
-                                    </li>
-                                </ul>
+                    <h2>Admin panel</h2>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" id="allUsersTable" href="#allUsers">Users table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#newUser">New User</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
 
-                                <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="allUsers">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title br-light">All Users</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="tab-content table-responsive">
-                                                    <table class="table table-striped table-sm">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Firstname</th>
-                                                            <th>Lastname</th>
-                                                            <th>Age</th>
-                                                            <th>Email</th>
-                                                            <th>Username</th>
-                                                            <th>Role</th>
-                                                            <th>Edit</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody id="tbodyAllUserTable">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade show" id="newUser">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title br-light">Add new user</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="text-center container">
-                                                    <form style="width:390px; margin: auto" id="formNewUser" name="formNewUser">
-                                                        <label for="newUserFirstName"><b>First name</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="firstName"
-                                                               id="newUserFirstName"
-                                                               placeholder="First name">
-                                                        <br/>
 
-                                                        <label for="newLastname"><b>Last name</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="lastName"
-                                                               id="newLastName"
-                                                               placeholder="Last name">
-                                                        <br/>
 
-                                                        <label for="newAge"><b>Age</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="newAge"
-                                                               name="age"
-                                                               placeholder="Age">
-                                                        <br/>
+                        <div class="tab-pane fade show active" id="allUsers">
+                            <div class="card">
+                                <h5 class="card-header">All users</h5>
+                                <div class="card-body text-center">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Age</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Role</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbodyAllUserTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-                                                        <label for="newEmail"><b>Email</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="newEmail"
-                                                               name="email"
-                                                               placeholder="Email">
-                                                        <br/>
+                        <div class="tab-pane fade" id="newUser">
+                            <div class="form-group">
+                                <div class="control-group required">
+                                    <div class="card">
+                                        <h5 class="card-header">Add new user</h5>
+                                        <div class="card-body text-center">
+                                            <div class="form justify-content-center mx-auto col-5">
+                                                <form id="formNewUser" name="formNewUser">
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserFirstName"><strong>First Name</strong>
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="firstName"
+                                                                   id="newUserFirstName"/>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserLastName"><strong>Last Name</strong>
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="lastName"
+                                                                   id="newUserLastName"/>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserAge"><strong>Age</strong>
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="age"
+                                                                   id="newUserAge"/>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserEmail"><strong>Email</strong>
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="email"
+                                                                   id="newUserEmail"/>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserName"><strong>Username</strong>
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="username"
+                                                                   id="newUserName"/>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label class="container-fluid" for="newUserPassword"><strong>Password</strong>
+                                                            <input class="form-control"
+                                                                   type="password"
+                                                                   name="password"
+                                                                   id="newUserPassword"/>
+                                                        </label>
+                                                    </p>
+                                                    <label class="container-fluid"
+                                                           for="newUserRoles"><strong>Role</strong>
+                                                        <select id="newUserRoles"
+                                                                class="form-control"
+                                                                name="roles"
+                                                                multiple
+                                                                size="2">
 
-                                                        <label for="newUserPassword"><b>Password</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="newUserPassword"
-                                                               name="password"
-                                                               placeholder="Password">
-                                                        <br/>
-
-                                                        <label for="newUsername"><b>Username</b></label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="newUsername"
-                                                               name="username"
-                                                               placeholder="Username">
-                                                        <br/>
-
-                                                        <div class="form-group">
-                                                            <label for="newRoles"><b>Roles</b></label>
-                                                            <select class="custom-select"
-                                                                    name="roles"
-                                                                    id="newRoles"
-                                                                    multiple="multiple"
-                                                                    size="2">
-                                                            </select>
-                                                        </div>
-
-                                                        <input type="submit" class="btn btn-success" value="Add new user">
-
-                                                    </form>
-                                                </div>
-                                                <br/>
+                                                        </select>
+                                                    </label>
+                                                    <button type="submit" id="newUserButton" class="btn btn-success">Add
+                                                        new user
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -164,37 +171,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="userPanel">
-                    <div class="col-sm-12 p-3">
-                        <h1>User information page</h1>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title br-light">About user</h4>
-                        </div>
-                        <div class="card-body tab-content table-striped table-responsive">
-                            <tr>
-                                <td>
-                                    <form>
-                                        <table class="table table-striped table-header table-hover bg-white" th:cols="9">
-                                            <thead class="thead align-content-center">
-                                            <tr class="b">
-                                                <th>ID</th>
-                                                <th>Firstname</th>
-                                                <th>Lastname</th>
-                                                <th>Age</th>
-                                                <th>Email</th>
-                                                <th>Username</th>
-                                                <th>Role</th>
 
-                                            </tr>
-                                            </thead>
-                                            <tbody id="userPanelBody">
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </td>
-                            </tr>
+
+                <div class="tab-pane fade" id="userPanel">
+                    <h2>User information-page</h2>
+                    <div class="card">
+                        <h5 class="card-header">About user</h5>
+                        <div class="card-body text-center">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody id="userPanelBody">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -202,6 +200,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div class="modal fade" id="edit" tabindex="-1" role="dialog"
@@ -220,41 +219,69 @@
                         <div class="controls">
                             <p>
                                 <label for="idEditUser"><strong>ID</strong>
-                                    <input class="form-control" type="number" name="id" id="idEditUser" disabled/>
+                                    <input class="form-control"
+                                           type="number"
+                                           name="id"
+                                           id="idEditUser"
+                                           disabled/>
                                 </label>
                             </p>
                             <p>
                                 <label for="firstNameEditUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="firstName" id="firstNameEditUser" />
+                                    <input class="form-control"
+                                           type="text"
+                                           name="firstName"
+                                           id="firstNameEditUser" />
                                 </label>
                             </p>
                             <p>
                                 <label for="lastNameEditUser"><strong>Last name</strong>
-                                    <input class="form-control" type="text" name="lastName" id="lastNameEditUser" />
+                                    <input class="form-control"
+                                           type="text"
+                                           name="lastName"
+                                           id="lastNameEditUser" />
                                 </label>
                             </p>
                             <p>
                                 <label for="ageEditUser"><strong>Age</strong>
-                                    <input class="form-control" type="text" name="age" id="ageEditUser" />
+                                    <input class="form-control"
+                                           type="text"
+                                           name="age"
+                                           id="ageEditUser" />
                                 </label>
                             </p>
                             <p>
                                 <label for="emailEditUser"><strong>Email</strong>
-                                    <input class="form-control" type="text" name="email" id="emailEditUser" />
+                                    <input class="form-control"
+                                           type="text"
+                                           name="email"
+                                           id="emailEditUser" />
                                 </label>
                             </p>
                             <p>
-                                <label for="userNameEditUser"><strong>Email</strong>
-                                    <input class="form-control" type="text" name="username" id="userNameEditUser" />
+                                <label for="userNameEditUser"><strong>Username</strong>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="username"
+                                           id="userNameEditUser" />
                                 </label>
                             </p>
                             <p>
                                 <label for="passwordEditUser"><strong>Password</strong>
-                                    <input class="form-control" type="password" name="password" id="passwordEditUser" required/>
+                                    <input class="form-control"
+                                           type="password"
+                                           name="password"
+                                           id="passwordEditUser"
+                                           required/>
                                 </label>
                             </p>
                             <label class="container-fluid col-6" for="rolesEditUser"><strong>Role</strong>
-                                <select class="form-control" id="rolesEditUser" name="roles" multiple size="2">
+                                <select class="form-control"
+                                        id="rolesEditUser"
+                                        name="roles"
+                                        multiple
+                                        size="2">
+
                                 </select>
                             </label>
                             <h1></h1>
@@ -286,35 +313,67 @@
                         <div class="controls">
                             <p>
                                 <label for="idDeleteUser"><strong>ID</strong>
-                                    <input class="form-control" type="number" name="id" id="idDeleteUser" disabled>
+                                    <input class="form-control"
+                                           type="number"
+                                           name="id"
+                                           id="idDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
                                 <label for="firstNameDeleteUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="firstName" id="firstNameDeleteUser" disabled>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="firstName"
+                                           id="firstNameDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
-                                <label for="lastNameDeleteUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="lastName" id="lastNameDeleteUser" disabled>
+                                <label for="lastNameDeleteUser"><strong>Last name</strong>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="lastName"
+                                           id="lastNameDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
-                                <label for="ageDeleteUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="age" id="ageDeleteUser" disabled>
+                                <label for="ageDeleteUser"><strong>Age</strong>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="age"
+                                           id="ageDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
-                                <label for="emailDeleteUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="email" id="emailDeleteUser" disabled>
+                                <label for="emailDeleteUser"><strong>Email</strong>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="email"
+                                           id="emailDeleteUser"
+                                           disabled>
+                                </label>
+                            </p>
+                            <p>
+                                <label for="userNameDeleteUser"><strong>Username</strong>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="username"
+                                           id="userNameDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
                                 <label for="passwordDeleteUser"><strong>Password</strong>
-                                    <input class="form-control" type="password" name="password" id="passwordDeleteUser" disabled>
+                                    <input class="form-control"
+                                           type="password"
+                                           name="password"
+                                           id="passwordDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
-
                             <label class="container-fluid col-6" for="rolesDeleteUser"><strong>Role</strong>
                                 <select class="form-control"
                                         id="rolesDeleteUser"
@@ -322,7 +381,6 @@
                                         multiple
                                         size="2"
                                         disabled>
-
                                 </select>
                             </label>
                             <h1></h1>

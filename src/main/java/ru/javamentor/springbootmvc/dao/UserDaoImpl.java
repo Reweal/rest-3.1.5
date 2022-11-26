@@ -21,31 +21,36 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public User findByName(String username) {
-        return entityManager.createQuery("select u from User u join fetch u.roles where u.username = :id", User.class)
-                .setParameter("id", username)
+    @Override
+    public User getByName(String email) {
+        return entityManager.createQuery("select u from User u join fetch u.roles where u.email = :email", User.class)
+                .setParameter("email", email)
                 .getResultList().stream().findAny().orElse(null);
     }
 
+    @Override
     public  void delete(int id) {
-        User user = entityManager.find(User.class, id);
-        entityManager.remove(user);
+        entityManager.remove(getById(id));
     }
 
+    @Override
     public void update(User user) {
         entityManager.merge(user);
     }
 
+    @Override
     public boolean add(User user) {
         entityManager.persist(user);
         return true;
     }
 
-    public Set<User> listUsers() {
-        return new LinkedHashSet<>(entityManager.createQuery("select s from User s join fetch s.roles", User.class).getResultList());
+    @Override
+    public Set<User> getListUsers() {
+        return new LinkedHashSet<>(entityManager.createQuery("select s from User s", User.class).getResultList());
     }
 
-    public User findById(int id) {
+    @Override
+    public User getById(int id) {
         return entityManager.find(User.class, id);
     }
 }

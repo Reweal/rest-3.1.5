@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.javamentor.springbootmvc.model.Role;
 import ru.javamentor.springbootmvc.model.User;
+import ru.javamentor.springbootmvc.service.RoleServiceImpl;
 import ru.javamentor.springbootmvc.service.UserServiceImpl;
 
 import java.math.BigDecimal;
@@ -20,15 +21,18 @@ import java.util.Set;
 @RequestMapping("/api")
 public class RestController {
 
+
     private UserServiceImpl userService;
+    private RoleServiceImpl roleService;
 
     @Autowired
-    public RestController(UserServiceImpl userService) {
+    public RestController(UserServiceImpl userService, RoleServiceImpl roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
     @GetMapping("/users")
     public ResponseEntity<Set<User>> showAllUsers() {
-        Set<User> users = userService.listUsers();
+        Set<User> users = userService.getListUsers();
         return users != null && !users.isEmpty()
                 ? new ResponseEntity<>(users, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -36,7 +40,7 @@ public class RestController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> showUser(@PathVariable int id) {
-        User user = userService.findByUsername(userService.findById(id).getUsername());
+        User user = userService.getById(id);
         return user != null
                 ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -66,12 +70,12 @@ public class RestController {
     }
 
     @GetMapping("/roles")
-    public ResponseEntity<Set<Role>> getAllRoles() {
-        return new ResponseEntity<>(userService.listRoles(), HttpStatus.OK);
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return new ResponseEntity<>(userService.getListRoles(), HttpStatus.OK);
     }
 
     @GetMapping("/roles/{id}")
     ResponseEntity<Role> getRoleById(@PathVariable("id") int id){
-        return new ResponseEntity<>(userService.findByIdRole(id), HttpStatus.OK);
+        return new ResponseEntity<>(roleService.getRoleById(id), HttpStatus.OK);
     }
 }

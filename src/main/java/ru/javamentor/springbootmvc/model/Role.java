@@ -1,8 +1,10 @@
 package ru.javamentor.springbootmvc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -14,6 +16,10 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
+
     public Role() {
     }
 
@@ -24,6 +30,14 @@ public class Role implements GrantedAuthority {
     public Role(Long id, String role) {
         this.id = id;
         this.role = role;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public String getNoPrefix() {
