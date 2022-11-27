@@ -47,9 +47,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void add(User user) {
+    public boolean add(User user) {
+        User oldUser = getByUsername(user.getUsername());
+        if (oldUser != null) {
+            return false;
+        }
         user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         userDao.add(user);
+        return true;
     }
 
     @Override
